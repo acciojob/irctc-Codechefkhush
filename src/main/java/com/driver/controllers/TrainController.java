@@ -5,6 +5,7 @@ import com.driver.EntryDto.SeatAvailabilityEntryDto;
 import com.driver.model.Station;
 import com.driver.services.TrainService;
 import io.swagger.models.auth.In;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,8 +66,8 @@ public class TrainController {
 
     @GetMapping("get-list-of-trains-arriving-in-a-range-of-time")
     public List<Integer> calculateListOfTrainIdsAtAStationInAParticularTimeRange(@RequestParam("station")Station station,
-                                                                                 @RequestParam("startTime")LocalTime startTime
-                                                                                 ,@RequestParam("endTime")LocalTime endTime){
+                                                                                 @RequestParam("startTime") LocalTime startTime
+            ,@RequestParam("endTime")LocalTime endTime){
 
         return trainService.trainsBetweenAGivenTime(station,startTime,endTime);
     }
